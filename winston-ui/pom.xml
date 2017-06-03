@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>winston-parent</artifactId>
+        <groupId>com.github.igorchs92</groupId>
+        <version>1.0.0-BETA</version>
+    </parent>
+    <artifactId>winston-ui</artifactId>
+    <name>Winston UI</name>
+    <description>Winston User Interface Module</description>
+    <packaging>jar</packaging>
+
+    <properties>
+        <source.dir>src</source.dir>
+    </properties>
+
+    <build>
+        <sourceDirectory>${source.dir}</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>${source.dir}</directory>
+            </resource>
+        </resources>
+    </build>
+
+</project>

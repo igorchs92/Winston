@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>winston-parent</artifactId>
+        <groupId>com.github.igorchs92</groupId>
+        <version>1.0.0-BETA</version>
+    </parent>
+    <artifactId>winston-message-broker</artifactId>
+    <name>Winston Message Broker</name>
+    <description>Winston Message Broker Module</description>
+    <packaging>jar</packaging>
+
+    <properties>
+        <java-version>1.8</java-version>
+        <source.dir>src/main/java</source.dir>
+        <test.source.dir>src/test/java</test.source.dir>
+        <resource.dir>src/main/resources</resource.dir>
+        <test.resource.dir>src/test/resources</test.resource.dir>
+        <binaries.dir>bin</binaries.dir>
+        <activemq.version>5.14.5</activemq.version>
+        <activemq.store.dir>${binaries.dir}/activemq/store</activemq.store.dir>
+    </properties>
+
+    <build>
+        <sourceDirectory>${source.dir}</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>${resource.dir}</directory>
+            </resource>
+            <resource>
+                <directory>${resource.dir}</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>project.properties</include>
+                </includes>
+            </resource>
+        </resources>
+        <testSourceDirectory>${test.source.dir}</testSourceDirectory>
+        <testResources>
+            <testResource>
+                <directory>${test.resource.dir}</directory>
+            </testResource>
+        </testResources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <configuration>
+                    <source>${java-version}</source>
+                    <target>${java-version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.igorchs92</groupId>
+            <artifactId>winston-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-broker</artifactId>
+            <version>${activemq.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-kahadb-store</artifactId>
+            <version>${activemq.version}</version>
+
+        </dependency>
+    </dependencies>
+
+
+</project>
