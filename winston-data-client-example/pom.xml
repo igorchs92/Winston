@@ -10,8 +10,8 @@
         <version>1.0.0-BETA</version>
     </parent>
 
-    <artifactId>winston-data-server-example</artifactId>
-    <name>Winston Data Server Example</name>
+    <artifactId>winston-data-client-example</artifactId>
+    <name>Winston Data Client Example</name>
     <description>Winston Data Server Example Module</description>
     <packaging>jar</packaging>
 
@@ -52,7 +52,7 @@
     <dependencies>
         <dependency>
             <groupId>com.github.igorchs92</groupId>
-            <artifactId>winston-data-server</artifactId>
+            <artifactId>winston-data-client</artifactId>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>

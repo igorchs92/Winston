@@ -1,4 +1,4 @@
-package com.github.igorchs92.winston.data.server;
+package com.github.igorchs92.winston.data.client.example.server;
 
 import com.github.igorchs92.winston.data.DataConverter;
 import com.github.igorchs92.winston.data.DataEvaluationResponse;
@@ -8,8 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.jms.*;
-
-import static com.github.igorchs92.winston.data.WinstonJMSClient.DATA_EVALUATION_REQUEST_TOPIC;
 
 /**
  * WinstonDataServer serves as a gateway for the communication between the server and it's clients.
@@ -42,7 +40,7 @@ public class WinstonDataServer {
     }
 
     private void createDataEvaluationRequestTopic() throws JMSException {
-        Topic topic = session.createTopic(DATA_EVALUATION_REQUEST_TOPIC);
+        Topic topic = session.createTopic(WinstonJMSClient.DATA_EVALUATION_REQUEST_TOPIC);
         MessageConsumer messageConsumer = session.createSharedConsumer(topic, clientId);
         messageConsumer.setMessageListener(new DataEvaluationRequestListener(dataHandler, dataConverter, this));
     }

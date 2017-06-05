@@ -1,4 +1,4 @@
-package com.github.igorchs92.winston.data.server;
+package com.github.igorchs92.winston.data.client.example.server;
 
 import com.github.igorchs92.winston.data.DataEvaluationRequest;
 import com.github.igorchs92.winston.data.DataEvaluationResponse;

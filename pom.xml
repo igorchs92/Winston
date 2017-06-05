@@ -18,6 +18,7 @@
         <module>winston-server</module>
         <module>winston-web</module>
         <module>winston-data-server-example</module>
+        <module>winston-data-client-example</module>
     </modules>
 
     <dependencyManagement>

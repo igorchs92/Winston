@@ -9,6 +9,7 @@
         <groupId>com.github.igorchs92</groupId>
         <version>1.0.0-BETA</version>
     </parent>
+
     <artifactId>winston-data</artifactId>
     <name>Winston Data</name>
     <description>Winston Data Module</description>

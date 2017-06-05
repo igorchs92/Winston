@@ -1,6 +1,8 @@
-package com.github.igorchs92.winston.data.server;
+package com.github.igorchs92.winston.data.client.example.server;
 
-import com.github.igorchs92.winston.data.*;
+import com.github.igorchs92.winston.data.DataConverter;
+import com.github.igorchs92.winston.data.DataProcessingRequest;
+import com.github.igorchs92.winston.data.DataProcessingResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -25,15 +27,15 @@ public class DataProcessingRequestListener implements MessageListener {
 
     @Override
     public void onMessage(Message message) {
-        TextMessage textMessage = (TextMessage) message;
         try {
+            TextMessage textMessage = (TextMessage) message;
             String requestValue = textMessage.getText();
-            logger.info("Incoming message: {}", requestValue);
+            logger.info("Incoming request: {}", requestValue);
             DataProcessingRequest request = this.dataConverter.readValue(requestValue, DataProcessingRequest.class);
             DataProcessingResponse dataProcessingResponse = dataHandler.processDataRequest(request);
             dataServer.sendDataProcessingResponse(message.getJMSReplyTo(), dataProcessingResponse);
         } catch (JMSException ex) {
-            logger.error("Could not process request.", ex);
+            logger.error("Could not process the request.", ex);
         }
     }
 

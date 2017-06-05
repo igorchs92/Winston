@@ -26,7 +26,9 @@ public class WinstonJMSClient {
     }
 
     public Connection connect() throws JMSException {
-        return connectionFactory.createConnection();
+        Connection connection = connectionFactory.createConnection();
+        connection.start();
+        return connection;
     }
 
     public DataConverter getDataConverter() {
