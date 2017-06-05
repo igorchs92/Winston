@@ -71,15 +71,11 @@
     <dependencies>
         <dependency>
             <groupId>com.github.igorchs92</groupId>
-            <artifactId>winston-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.github.igorchs92</groupId>
             <artifactId>winston-data</artifactId>
         </dependency>
         <dependency>
             <groupId>com.github.igorchs92</groupId>
-            <artifactId>winston-ui</artifactId>
+            <artifactId>winston-web</artifactId>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

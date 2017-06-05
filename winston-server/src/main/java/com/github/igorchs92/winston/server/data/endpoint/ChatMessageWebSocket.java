@@ -2,9 +2,8 @@ package com.github.igorchs92.winston.server.data.endpoint;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import com.github.igorchs92.winston.data.InputChatMessage;
-import com.github.igorchs92.winston.data.OutputChatMessage;
+import com.github.igorchs92.winston.server.data.InputChatMessage;
+import com.github.igorchs92.winston.server.data.OutputChatMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
@@ -19,7 +18,7 @@ import java.util.List;
  * Created by Igor on 1-6-2017.
  */
 @EnableWebSocket
-@ServerEndpoint(value = "/ws/chat/message/")
+@ServerEndpoint(value = "/ws/data/message/")
 public class ChatMessageWebSocket implements ChatMessageEndpoint {
 
     private static final Logger logger = LoggerFactory.getLogger(ChatMessageWebSocket.class);
@@ -55,7 +54,8 @@ public class ChatMessageWebSocket implements ChatMessageEndpoint {
         if (inputChatMessage != null) {
             logger.info("Connection ({}), has sent: '{}'.", session.getId(), inputChatMessage.getContent());
             OutputChatMessage outputChatMessage = new OutputChatMessage();
-            outputChatMessage.setMessage("You have sent: '" + inputChatMessage.getContent() + "'.");
+            outputChatMessage.setConversationReference(inputChatMessage.getConversationReference());
+            outputChatMessage.setMessage("You have sent: '" + inputChatMessage.getContent() + "', ref: '" + outputChatMessage.getConversationReference() + "'.");
             send(session, outputChatMessage);
         }
     }

@@ -1,6 +1,6 @@
 package com.github.igorchs92.winston.server.data.endpoint;
 
-import com.github.igorchs92.winston.data.OutputChatMessage;
+import com.github.igorchs92.winston.server.data.OutputChatMessage;
 
 /**
  * Created by Igor on 1-6-2017.

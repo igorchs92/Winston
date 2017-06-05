@@ -3,15 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
-        <artifactId>winston-parent</artifactId>
         <groupId>com.github.igorchs92</groupId>
+        <artifactId>winston-parent</artifactId>
         <version>1.0.0-BETA</version>
     </parent>
-    <artifactId>winston-data</artifactId>
-    <name>Winston Data</name>
-    <description>Winston Data Module</description>
+    <artifactId>winston-data-server</artifactId>
+    <name>Winston Data Server</name>
+    <description>Winston Data Server Module</description>
     <packaging>jar</packaging>
 
     <properties>
@@ -20,8 +19,6 @@
         <test.source.dir>src/test/java</test.source.dir>
         <resource.dir>src/main/resources</resource.dir>
         <test.resource.dir>src/test/resources</test.resource.dir>
-        <binaries.dir>bin</binaries.dir>
-        <artemis.version>2.1.0</artemis.version>
     </properties>
 
     <build>
@@ -29,13 +26,6 @@
         <resources>
             <resource>
                 <directory>${resource.dir}</directory>
-            </resource>
-            <resource>
-                <directory>${resource.dir}</directory>
-                <filtering>true</filtering>
-                <includes>
-                    <include>project.properties</include>
-                </includes>
             </resource>
         </resources>
         <testSourceDirectory>${test.source.dir}</testSourceDirectory>
@@ -59,22 +49,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>artemis-jms-client</artifactId>
-            <version>${artemis.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>artemis-core-client</artifactId>
-            <version>${artemis.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
+            <groupId>com.github.igorchs92</groupId>
+            <artifactId>winston-data</artifactId>
         </dependency>
     </dependencies>
 

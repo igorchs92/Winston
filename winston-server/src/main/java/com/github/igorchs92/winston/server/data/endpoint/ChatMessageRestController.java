@@ -1,13 +1,11 @@
 package com.github.igorchs92.winston.server.data.endpoint;
 
 
-import com.github.igorchs92.winston.data.InputChatMessage;
-import com.github.igorchs92.winston.data.OutputChatMessage;
+import com.github.igorchs92.winston.server.data.InputChatMessage;
+import com.github.igorchs92.winston.server.data.OutputChatMessage;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 @RestController
 @RequestMapping("/api/chat/message/")
 public class ChatMessageRestController implements ChatMessageEndpoint {
+
 
     @PostMapping
     public ResponseEntity post(HttpServletRequest request, InputChatMessage inputChatMessage) {
@@ -30,4 +29,5 @@ public class ChatMessageRestController implements ChatMessageEndpoint {
     public void send(OutputChatMessage outputChatMessage) throws Exception {
 
     }
+
 }

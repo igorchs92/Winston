@@ -21,6 +21,7 @@
         <test.resource.dir>src/test/resources</test.resource.dir>
         <binaries.dir>bin</binaries.dir>
         <activemq.version>5.14.5</activemq.version>
+        <artemis.version>2.1.0</artemis.version>
         <activemq.store.dir>${binaries.dir}/activemq/store</activemq.store.dir>
     </properties>
 
@@ -59,19 +60,23 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.igorchs92</groupId>
-            <artifactId>winston-core</artifactId>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
         </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.activemq</groupId>-->
+            <!--<artifactId>activemq-broker</artifactId>-->
+            <!--<version>${activemq.version}</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.activemq</groupId>-->
+            <!--<artifactId>activemq-kahadb-store</artifactId>-->
+            <!--<version>${activemq.version}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-broker</artifactId>
-            <version>${activemq.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-kahadb-store</artifactId>
-            <version>${activemq.version}</version>
-
+            <artifactId>artemis-server</artifactId>
+            <version>${artemis.version}</version>
         </dependency>
     </dependencies>
 
