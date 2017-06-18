@@ -1,4 +1,4 @@
-package com.github.igorchs92.winston.data.client.example.server;
+package com.github.igorchs92.winston.data.server;
 
 import com.github.igorchs92.winston.data.DataConverter;
 import com.github.igorchs92.winston.data.DataProcessingRequest;
@@ -30,12 +30,14 @@ public class DataProcessingRequestListener implements MessageListener {
         try {
             TextMessage textMessage = (TextMessage) message;
             String requestValue = textMessage.getText();
-            logger.info("Incoming request: {}", requestValue);
+            logger.info("incoming message: {}", requestValue);
             DataProcessingRequest request = this.dataConverter.readValue(requestValue, DataProcessingRequest.class);
-            DataProcessingResponse dataProcessingResponse = dataHandler.processDataRequest(request);
-            dataServer.sendDataProcessingResponse(message.getJMSReplyTo(), dataProcessingResponse);
+            String correlationId = message.getJMSCorrelationID();
+            DataProcessingResponse processingResponse = dataHandler.processDataRequest(request);
+            Destination destination = message.getJMSReplyTo();
+            dataServer.sendDataProcessingResponse(correlationId, processingResponse, destination);
         } catch (JMSException ex) {
-            logger.error("Could not process the request.", ex);
+            logger.warn("Could not process request.", ex);
         }
     }
 

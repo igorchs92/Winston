@@ -1,4 +1,4 @@
-package com.github.igorchs92.winston.data.server.example;
+package com.github.igorchs92.data.server.greeter;
 
 import com.github.igorchs92.winston.data.DataEvaluationRequest;
 import com.github.igorchs92.winston.data.DataEvaluationResponse;
@@ -9,18 +9,19 @@ import com.github.igorchs92.winston.data.server.WinstonDataServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Date;
 import java.util.Scanner;
 
 /**
- * Created by Igor on 5-6-2017.
+ * Created by Igor on 8-6-2017.
  */
-public class WinstonDataServerExample {
+public class WinstonDataServerGreeter {
 
-    private static final Logger logger = LoggerFactory.getLogger(WinstonDataServerExample.class);
+    private static final Logger logger = LoggerFactory.getLogger(WinstonDataServerGreeter.class);
 
     public static void main(String[] args) throws Exception {
         logger.info("Setting up the server...");
-        WinstonDataServer winstonDataServer = new WinstonDataServer("example1", createDataHandler());
+        WinstonDataServer winstonDataServer = new WinstonDataServer("greeter", createDataHandler());
         logger.info("Connecting to the message broker...");
         winstonDataServer.connect();
         logger.info("Connection has been established.");
@@ -38,15 +39,31 @@ public class WinstonDataServerExample {
             @Override
             public DataEvaluationResponse evaluateDataRequest(DataEvaluationRequest request) {
                 logger.info("Incoming Data Evaluation Request.");
-                //evaluate data here
-                return new DataEvaluationResponse();
+                DataEvaluationResponse response = new DataEvaluationResponse();
+                if (request.getTokens().containsKey("greeting")) {
+                    response.setScore(100);
+                } else {
+                    response.setScore(0);
+                }
+                return response;
             }
 
             @Override
             public DataProcessingResponse processDataRequest(DataProcessingRequest request) {
                 logger.info("Incoming Data Processing Request.");
-                //process data here
-                return new DataProcessingResponse();
+                DataProcessingResponse response = DataProcessingResponse.from(request);
+                Date dt = new Date();
+                int hours = dt.getHours();
+                if(hours>=0 || hours<=12){
+                    response.setContent("Good morning!!");
+                }else if(hours>=12 || hours<=16){
+                    response.setContent("Good afternoon!");
+                }else if(hours>=16 || hours<=21){
+                    response.setContent("Good evening!");
+                }else if(hours>=21 || hours<=24){
+                    response.setContent("Good night!");
+                }
+                return response;
             }
 
         };

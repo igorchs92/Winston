@@ -3,15 +3,15 @@ package com.github.igorchs92.winston.server.data;
 /**
  * Created by Igor on 1-6-2017.
  */
-public class InputChatMessage {
+public class DataRequest {
 
     private String conversationReference;
     private String content;
 
-    public InputChatMessage() {
+    public DataRequest() {
     }
 
-    public InputChatMessage(String conversationReference, String content) {
+    public DataRequest(String conversationReference, String content) {
         this.conversationReference = conversationReference;
         this.content = content;
     }
@@ -20,7 +20,7 @@ public class InputChatMessage {
         return conversationReference;
     }
 
-    public InputChatMessage setConversationReference(String conversationReference) {
+    public DataRequest setConversationReference(String conversationReference) {
         this.conversationReference = conversationReference;
         return this;
     }
@@ -29,7 +29,7 @@ public class InputChatMessage {
         return content;
     }
 
-    public InputChatMessage setContent(String content) {
+    public DataRequest setContent(String content) {
         this.content = content;
         return this;
     }

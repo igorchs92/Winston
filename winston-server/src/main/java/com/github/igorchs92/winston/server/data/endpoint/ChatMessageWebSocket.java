@@ -2,8 +2,10 @@ package com.github.igorchs92.winston.server.data.endpoint;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.igorchs92.winston.server.data.InputChatMessage;
-import com.github.igorchs92.winston.server.data.OutputChatMessage;
+import com.github.igorchs92.winston.server.data.DataRequest;
+import com.github.igorchs92.winston.server.data.DataResponse;
+import com.github.igorchs92.winston.server.data.client.WinstonDataClientExample;
+import com.github.igorchs92.winston.server.data.client.WinstonServerDataClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
@@ -19,7 +21,7 @@ import java.util.List;
  */
 @EnableWebSocket
 @ServerEndpoint(value = "/ws/data/message/")
-public class ChatMessageWebSocket implements ChatMessageEndpoint {
+public class ChatMessageWebSocket {
 
     private static final Logger logger = LoggerFactory.getLogger(ChatMessageWebSocket.class);
     private static final ObjectMapper JSON = new ObjectMapper();
@@ -44,32 +46,18 @@ public class ChatMessageWebSocket implements ChatMessageEndpoint {
     }
 
     @OnMessage
-    public void onMessage(Session session, String message) {
-        InputChatMessage inputChatMessage = null;
-        try {
-            inputChatMessage = JSON.readValue(message, InputChatMessage.class);
-        } catch (IOException ex) {
-            logger.error("Could not read message from connection ({})", session.getId(), ex);
-        }
-        if (inputChatMessage != null) {
-            logger.info("Connection ({}), has sent: '{}'.", session.getId(), inputChatMessage.getContent());
-            OutputChatMessage outputChatMessage = new OutputChatMessage();
-            outputChatMessage.setConversationReference(inputChatMessage.getConversationReference());
-            outputChatMessage.setMessage("You have sent: '" + inputChatMessage.getContent() + "', ref: '" + outputChatMessage.getConversationReference() + "'.");
-            send(session, outputChatMessage);
-        }
+    public void onMessage(Session session, String message) throws Exception {
+        DataRequest request = JSON.readValue(message, DataRequest.class);
+        logger.info("Connection ({}), has sent: '{}'.", session.getId(), request.getContent());
+        //WinstonServerDataClient.INSTANCE.send(request, response -> send(session, response.setConversationReference(request.getConversationReference())));
     }
 
-    public void send(Session session, OutputChatMessage outputChatMessage) {
+    public void send(Session session, DataResponse dataResponse) {
         try {
-            session.getAsyncRemote().sendText(JSON.writeValueAsString(outputChatMessage));
+            session.getAsyncRemote().sendText(JSON.writeValueAsString(dataResponse));
         } catch (JsonProcessingException ex) {
             logger.error("Could not process Json.", ex);
         }
     }
 
-    @Override
-    public void send(OutputChatMessage outputChatMessage) throws Exception {
-
-    }
 }

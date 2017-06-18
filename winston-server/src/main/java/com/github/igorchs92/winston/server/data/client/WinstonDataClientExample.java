@@ -1,4 +1,4 @@
-package com.github.igorchs92.winston.data.client.example;
+package com.github.igorchs92.winston.server.data.client;
 
 import com.github.igorchs92.winston.data.DataEvaluationRequest;
 import com.github.igorchs92.winston.data.DataEvaluationResponse;
@@ -10,7 +10,10 @@ import com.github.igorchs92.winston.data.client.WinstonDataClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Scanner;
 
 /**
  * Created by Igor on 5-6-2017.
@@ -25,7 +28,6 @@ public class WinstonDataClientExample {
         logger.info("Connecting to the message broker...");
         winstonDataClient.connect();
         winstonDataClient.connectServer("example");
-        winstonDataClient.connectServer("example1");
         logger.info("Connection has been established.");
         logger.info("Type 'quit' to stop the program or enter to send a request.");
         Scanner scanner = new Scanner(System.in);

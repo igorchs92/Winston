@@ -1,8 +1,9 @@
 package com.github.igorchs92.winston.server.data.endpoint;
 
 
-import com.github.igorchs92.winston.server.data.InputChatMessage;
-import com.github.igorchs92.winston.server.data.OutputChatMessage;
+import com.github.igorchs92.winston.server.data.DataRequest;
+import com.github.igorchs92.winston.server.data.DataResponse;
+import com.github.igorchs92.winston.server.data.client.DataResponseConsumer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,19 +16,14 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("/api/chat/message/")
-public class ChatMessageRestController implements ChatMessageEndpoint {
+public class ChatMessageRestController {
 
 
     @PostMapping
-    public ResponseEntity post(HttpServletRequest request, InputChatMessage inputChatMessage) {
-        OutputChatMessage outputChatMessage = new OutputChatMessage();
-        outputChatMessage.setMessage("You have sent: '" + inputChatMessage.getContent() + "'.");
-        return ResponseEntity.ok(outputChatMessage);
-    }
-
-    @Override
-    public void send(OutputChatMessage outputChatMessage) throws Exception {
-
+    public ResponseEntity post(HttpServletRequest request, DataRequest chatMessageInput) {
+        DataResponse dataResponse = new DataResponse();
+        dataResponse.setContent("You have sent: '" + chatMessageInput.getContent() + "'.");
+        return ResponseEntity.ok(dataResponse);
     }
 
 }

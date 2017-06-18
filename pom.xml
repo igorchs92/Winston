@@ -19,6 +19,7 @@
         <module>winston-web</module>
         <module>winston-data-server-example</module>
         <module>winston-data-client-example</module>
+        <module>winston-data-server-greeter</module>
     </modules>
 
     <dependencyManagement>

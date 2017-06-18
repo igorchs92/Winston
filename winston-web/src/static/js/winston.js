@@ -155,7 +155,7 @@ Winston.send = function (content) {
 };
 
 Winston.receive = function (data) {
-    buildOutputMessage(data.message);
+    buildOutputMessage(data.content);
 };
 
 Winston.init = function () {

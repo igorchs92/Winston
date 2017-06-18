@@ -3,15 +3,15 @@ package com.github.igorchs92.winston.server.data;
 /**
  * Created by Igor on 1-6-2017.
  */
-public class OutputChatMessage {
+public class DataResponse {
 
     private String conversationReference;
     private String content;
 
-    public OutputChatMessage() {
+    public DataResponse() {
     }
 
-    public OutputChatMessage(String conversationReference, String content) {
+    public DataResponse(String conversationReference, String content) {
         this.conversationReference = conversationReference;
         this.content = content;
     }
@@ -20,18 +20,17 @@ public class OutputChatMessage {
         return conversationReference;
     }
 
-    public OutputChatMessage setConversationReference(String conversationReference) {
+    public DataResponse setConversationReference(String conversationReference) {
         this.conversationReference = conversationReference;
         return this;
     }
 
-    public String getMessage() {
+    public String getContent() {
         return content;
     }
 
-    public OutputChatMessage setMessage(String message) {
-        this.content = message;
+    public DataResponse setContent(String content) {
+        this.content = content;
         return this;
     }
-
 }

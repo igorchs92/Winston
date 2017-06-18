@@ -1,4 +1,4 @@
-package com.github.igorchs92.winston.data.client.example.client;
+package com.github.igorchs92.winston.data.client;
 
 import com.github.igorchs92.winston.data.DataEvaluationResponse;
 import com.github.igorchs92.winston.data.DataProcessingRequest;
@@ -12,8 +12,8 @@ import java.util.Optional;
  */
 public interface ClientDataHandler {
 
-    Optional<DataEvaluationResponse> evaluateDataResponses(Collection<DataEvaluationResponse> responses);
-    DataProcessingRequest createDataProcessingRequest(DataEvaluationResponse response);
-    void processDataResponse(DataProcessingResponse response);
+    Optional<DataEvaluationResponse> handleEvaluationResponseMap(DataEvaluationResponseMap responseMap);
+    void handleProcessingRequestException(DataProcessingRequest request, Exception ex);
+    void handleProcessingResponse(DataProcessingResponse response);
 
 }
